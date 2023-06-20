@@ -1,40 +1,11 @@
-import "./New.scss";
+import "./NewHotel.scss";
 import Navbar from "../../component/navbar/Navbar";
 import Sidebar from "../../component/sidebar/Sidebar";
 import { DriveFolderUploadOutlined } from "@mui/icons-material";
 import { useState } from "react";
-import axios from "axios";
 
-function New({ inputs, title }) {
+function NewHotel({ inputs, title }) {
   const [file, setFile] = useState("");
-  const [info, setInfo] = useState({});
-
-  const handleChange = (e) => {
-    setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-  };
-
-  const handleClick = async (e) => {
-    e.preventDefault();
-    const data = new FormData();
-    data.append("file", file);
-    data.append("upload_preset", "upload");
-
-    try {
-      const uploadRes = await axios.post(
-        "https://api.cloudinary.com/v1_1/dgef6jvyi/image/upload",
-        data
-      );
-      const { url } = uploadRes.data;
-      const newUser = {
-        ...info,
-        img: url,
-      };
-
-      await axios.post("/auth/register", newUser);
-    } catch (err) {
-      console.log(err);
-    }
-  };
   return (
     <div className="new">
       <Sidebar />
@@ -73,17 +44,13 @@ function New({ inputs, title }) {
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
                   <input
-                    onChange={handleChange}
                     type={input.type}
                     placeholder={input.placeholder}
-                    id={input.id}
                   ></input>
                 </div>
               ))}
 
-              <button className="btnSend" onClick={handleClick}>
-                Send
-              </button>
+              <button className="btnSend">Send</button>
             </form>
           </div>
         </div>
@@ -92,4 +59,4 @@ function New({ inputs, title }) {
   );
 }
 
-export default New;
+export default NewHotel;

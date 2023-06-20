@@ -48,28 +48,27 @@
       }
     }
   }
-}
-
-.datatable {
-  .dataGrid {
-    color: gray;
-    border: none;
-
-    .viewButton,
-    .deleteButton,
-    .cellWidthStatus {
+  .datatable {
+    .dataGrid {
       color: gray;
       border: none;
-    }
-    .viewButton {
-      &:hover {
-        color: greenyellow;
-      }
-    }
 
-    .deleteButton {
-      &:hover {
-        color: crimson;
+      .viewButton,
+      .deleteButton,
+      .cellWidthStatus {
+        color: gray;
+        border: none;
+      }
+      .viewButton {
+        &:hover {
+          color: greenyellow;
+        }
+      }
+
+      .deleteButton {
+        &:hover {
+          color: crimson;
+        }
       }
     }
   }

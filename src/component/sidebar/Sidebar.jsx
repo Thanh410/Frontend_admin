@@ -1,5 +1,5 @@
 import "./Sidebar.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   AccountCircleOutlined,
   CreditCard,
@@ -16,10 +16,21 @@ import {
 } from "@mui/icons-material";
 import { useContext } from "react";
 import { DarkModeContext } from "../../context/themeContext";
+import { AuthContext } from "../../context/authContext";
+import { useTranslation } from "react-i18next";
 
 function Sidebar() {
+  const navigate = useNavigate();
   const { dispatch } = useContext(DarkModeContext);
+  const { user } = useContext(AuthContext);
+  const { i18n, t } = useTranslation("sidebar");
 
+  const handleClick = async (e) => {
+    e.preventDefault();
+    dispatch({ type: "LOGOUT" });
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
   return (
     <div className="sidebar">
       <div className="top">
@@ -32,64 +43,68 @@ function Sidebar() {
           <p className="title">MAIN</p>
           <li>
             <Dashboard className="icon" />
-            <span>Dashboard</span>
+            <span>{t("dashboard")}</span>
           </li>
           <p className="title">USER</p>
 
           <li>
             <Link to={"/users"}>
               <PeopleOutline className="icon" />
-              <span>User</span>
+              <span>{t("user")}</span>
             </Link>
           </li>
           <p className="title">USEFULL</p>
 
           <li>
-            <Link to={"/products"}>
+            <Link to={"/hotels"}>
               <Store className="icon" />
-              <span>Products</span>
+              <span>{t("hotel")}</span>
             </Link>
           </li>
           <li>
-            <CreditCard className="icon" />
-            <span>Orders</span>
+            <Link to={"/rooms"}>
+              <CreditCard className="icon" />
+              <span>{t("room")}</span>
+            </Link>
           </li>
           <li>
             <LocalShipping className="icon" />
-            <span>Delivery</span>
+            <span>{t("delivery")}</span>
           </li>
           <li>
             <InsertChart className="icon" />
-            <span>Stats</span>
+            <span>{t("stats")}</span>
           </li>
           <p className="title">SERVICE</p>
 
           <li>
             <NotificationsNone className="icon" />
-            <span>Notifications</span>
+            <span>{t("notifications")}</span>
           </li>
           <li>
             <SettingsSystemDaydream className="icon" />
-            <span>System Health</span>
+            <span>{t("systemHealth")}</span>
           </li>
           <li>
             <Psychology className="icon" />
-            <span>Logs</span>
+            <span>{t("logs")}</span>
           </li>
           <li>
             <Settings className="icon" />
-            <span>Settings</span>
+            <span>{t("settings")}</span>
           </li>
           <p className="title">USER</p>
 
           <li>
             <AccountCircleOutlined className="icon" />
-            <span>Profile</span>
+            <span>{t("profiles")}</span>
           </li>
-          <li>
-            <Logout className="icon" />
-            <span>Logout</span>
-          </li>
+          {user && (
+            <li onClick={handleClick}>
+              <Logout className="icon" />
+              <span>{t("logout")}</span>
+            </li>
+          )}
         </ul>
       </div>
       <div className="bottom">

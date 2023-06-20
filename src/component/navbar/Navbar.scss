@@ -60,6 +60,19 @@
           top: -5px;
           right: -5px;
         }
+
+        .languageEn,
+        .languageVi {
+          cursor: pointer;
+        }
+        .languageEn.active,
+        .languageVi.active {
+          color: rgb(115, 115, 240);
+        }
+        .gutter {
+          margin-right: 5px;
+          margin-left: 5px;
+        }
       }
     }
   }

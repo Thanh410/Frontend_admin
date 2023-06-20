@@ -1,43 +1,43 @@
 export const userInputs = [
   {
-    id: 1,
+    id: "username",
     label: "Username",
     type: "text",
     placeholder: "john_deo",
   },
 
   {
-    id: 2,
+    id: "fullname",
     label: "Full name",
     type: "text",
     placeholder: "John Deo",
   },
   {
-    id: 3,
+    id: "email",
     label: "Email",
     type: "email",
     placeholder: "john_deo@gmail.com    ",
   },
   {
-    id: 4,
+    id: "phone",
     label: "Phone",
     type: "text",
     placeholder: "+84 021 2836 128",
   },
   {
-    id: 5,
+    id: "password",
     label: "Password",
     type: "password",
     placeholder: "Password",
   },
   {
-    id: 6,
+    id: "city",
     label: "Address",
     type: "text",
     placeholder: " Elton St. 216 New York",
   },
   {
-    id: 7,
+    id: "country",
     label: "Country",
     type: "text",
     placeholder: "USA",
@@ -46,13 +46,13 @@ export const userInputs = [
 
 export const productInputs = [
   {
-    id: 1,
+    id: "title",
     type: "text",
     label: "Title",
     placeholder: "Apple Macbook Pro",
   },
   {
-    id: 2,
+    id: "desc",
     type: "text",
     label: "Description",
     placeholder: "Description",
@@ -65,13 +65,13 @@ export const productInputs = [
     placeholder: "Computers",
   },
   {
-    id: 4,
+    id: "price",
     label: "Price",
     type: "text",
     placeholder: "100",
   },
   {
-    id: 5,
+    id: "stock",
     label: "Stock",
     type: "text",
     placeholder: "in stock",

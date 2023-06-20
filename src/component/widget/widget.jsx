@@ -1,5 +1,4 @@
 import {
-  AccountBalanceOutlined,
   AccountBalanceWalletOutlined,
   KeyboardArrowUp,
   MonetizationOnOutlined,

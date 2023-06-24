@@ -30,7 +30,10 @@ function New({ inputs, title }) {
         img: url,
       };
 
-      await axios.post("/auth/register", newUser);
+      await axios.post(
+        "https://backend-api-admin.onrender.com/auth/register",
+        newUser
+      );
     } catch (err) {
       console.log(err);
     }

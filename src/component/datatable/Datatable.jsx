@@ -21,7 +21,9 @@ function Datatable({ columns, title }) {
 
   const handleClick = async (id) => {
     try {
-      await axios.delete(`/${path}/find/${id}`);
+      await axios.delete(
+        `https://backend-api-admin.onrender.com/${path}/find/${id}`
+      );
       setList(list.filter((item) => item._id !== id));
     } catch (err) {
       console.log(err);

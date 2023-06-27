@@ -22,7 +22,7 @@ function Datatable({ columns, title }) {
   const handleClick = async (id) => {
     try {
       await axios.delete(
-        `https://backend-api-admin.onrender.com/${path}/find/${id}`
+        `https://backend-api-admin.onrender.com/api/${path}/find/${id}`
       );
       setList(list.filter((item) => item._id !== id));
     } catch (err) {

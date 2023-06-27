@@ -31,7 +31,7 @@ function New({ inputs, title }) {
       };
 
       await axios.post(
-        "https://backend-api-admin.onrender.com/auth/register",
+        "https://backend-api-admin.onrender.com/api/auth/register",
         newUser
       );
     } catch (err) {

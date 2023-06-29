@@ -23,7 +23,7 @@ function Sidebar() {
   const navigate = useNavigate();
   const { dispatch } = useContext(DarkModeContext);
   const { user } = useContext(AuthContext);
-  const { i18n, t } = useTranslation("sidebar");
+  const { t } = useTranslation("sidebar");
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -48,7 +48,7 @@ function Sidebar() {
           <p className="title">USER</p>
 
           <li>
-            <Link to={"/users"}>
+            <Link to={"users"}>
               <PeopleOutline className="icon" />
               <span>{t("user")}</span>
             </Link>

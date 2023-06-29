@@ -11,12 +11,14 @@ import {
 } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
-import { createContext, useContext, useState } from "react";
-import { DarkMode } from "@mui/icons-material";
+import { useContext } from "react";
 import { DarkModeContext } from "./context/themeContext";
 import { AuthContext } from "./context/authContext";
 import { useHotel, userColumns } from "./datatableSource";
 import NewHotel from "./pages/newHotel/NewHotel";
+import Register from "./pages/register/register";
+import OTP from "./pages/OTP/otp";
+import Changepassword from "./pages/ChangePassword/ChangePassword.js";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -35,6 +37,9 @@ function App() {
         <Routes>
           <Route part="/">
             <Route element={<Login />} path="login"></Route>
+            <Route element={<Register />} path="register"></Route>
+            <Route element={<OTP />} path="otp"></Route>
+            <Route element={<Changepassword />} path="changepassword"></Route>
             <Route
               element={
                 <Protected>

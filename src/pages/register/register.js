@@ -1,35 +1,20 @@
 import { AuthContext } from "../../context/authContext";
-import "./login.scss";
+import "./register.scss";
 import { useContext, useState } from "react";
 import axios from "axios";
 
-import { ChevronRight } from "@mui/icons-material";
-
 import { Link, useNavigate } from "react-router-dom";
+import { ChevronRight } from "@mui/icons-material";
 import Toast from "../../component/toast/toast";
-import { RecoveryContext } from "../../context/recoveryContext";
-function Login() {
+function Register() {
   const [credentials, setCredentials] = useState({
-    username: undefined,
+    username: null,
     password: undefined,
+    email: undefined,
   });
-
+  const [toast, setToast] = useState("");
   const { user, loading, error, dispatch } = useContext(AuthContext);
-  const { email, page, otp } = useContext(RecoveryContext);
-
   const navigate = useNavigate();
-
-  const handleOTP = async (e) => {
-    e.preventDefault();
-    try {
-      const otp = Math.floor(Math.random() * 9000 + 1000);
-      const res = await axios.post(
-        "https://backend-api-admin.onrender.com/api/send_recovery_email",
-        { otp, email }
-      );
-      console.log(res.data);
-    } catch (err) {}
-  };
 
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -37,19 +22,20 @@ function Login() {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    dispatch({ type: "LOGIN_START" });
+    dispatch({ type: "REGISTER_START" });
     try {
       const res = await axios.post(
-        "https://backend-api-admin.onrender.com/api/auth/login",
+        "https://backend-api-admin.onrender.com/api/auth/register",
         credentials
       );
-
+      setToast(res.data);
       if (res.data.isAdmin) {
-        dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
-        navigate("/");
+        dispatch({ type: "REGISTER_SUCCESS", payload: res.data });
+        setToast(res.data);
+        navigate("/login");
       } else {
         dispatch({
-          type: "LOGIN_FAILURE",
+          type: "REGISTER_FAILURE",
           payload: { message: "You are not allowed!" },
         });
       }
@@ -60,24 +46,28 @@ function Login() {
       });
     }
   };
-
   return (
-    <div className="login">
-      {error ? (
-        <Toast>Wrong Username or Password</Toast>
-      ) : (
-        user && <Toast>Login Success</Toast>
-      )}
-
-      <div className="loginContainer">
-        <h2 className="title">Login</h2>
+    <div className="SignUp">
+      {error ? <Toast>Not found!</Toast> : user && <Toast>{toast}</Toast>}
+      <div className="SignUpContainer">
+        <h2 className="title">Sign Up</h2>
         <div className="item">
           <label className="text">Username</label>
           <input
             id="username"
             onChange={handleChange}
             type="text"
-            placeholder="Admin"
+            placeholder="Username"
+          ></input>
+        </div>
+
+        <div className="item">
+          <label className="text">Email</label>
+          <input
+            id="email"
+            onChange={handleChange}
+            type="email"
+            placeholder="Email"
           ></input>
         </div>
         <div className="item">
@@ -86,22 +76,18 @@ function Login() {
             id="password"
             onChange={handleChange}
             type="password"
-            placeholder="Admin"
+            placeholder="Password"
           ></input>
-
-          <Link to={"/otp"} className="forgotPassword" onClick={handleOTP}>
-            Forgot password?
-          </Link>
         </div>
 
-        <button disabled={loading} className="btnLogin" onClick={handleClick}>
-          Login
+        <button disabled={loading} className="btnSignUp" onClick={handleClick}>
+          Register
           <ChevronRight className="icon" />
         </button>
         <span className="signUp">
-          Don't have an account?
-          <Link to={"/register"} className="linkSignUp">
-            Register
+          You already have an account?
+          <Link to={"/login"} className="linkSignUp">
+            Login
           </Link>
         </span>
       </div>
@@ -109,4 +95,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

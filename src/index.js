@@ -8,12 +8,12 @@ import { RecoveryContextProvider } from "./context/recoveryContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RecoveryContextProvider>
-      <DarkModeContextProvider>
-        <AuthContextProvider>
+    <DarkModeContextProvider>
+      <AuthContextProvider>
+        <RecoveryContextProvider>
           <App />
-        </AuthContextProvider>
-      </DarkModeContextProvider>
-    </RecoveryContextProvider>
+        </RecoveryContextProvider>
+      </AuthContextProvider>
+    </DarkModeContextProvider>
   </React.StrictMode>
 );

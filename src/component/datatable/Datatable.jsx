@@ -14,7 +14,6 @@ function Datatable({ columns, title }) {
 
   const { t } = useTranslation(["title", "option"]);
 
-  console.log(t);
   useEffect(() => {
     setList(data);
   }, [data]);
@@ -38,14 +37,14 @@ function Datatable({ columns, title }) {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to={"/users/test"}>
-              <div className="viewButton">{t("view")}</div>
+            <Link to={"/users"}>
+              <div className="viewButton">{t("view", { ns: "option" })}</div>
             </Link>
             <div
               className="deleteButton"
               onClick={() => handleClick(params.row._id)}
             >
-              {t("delete")}
+              {t("delete", { ns: "option" })}
             </div>
           </div>
         );

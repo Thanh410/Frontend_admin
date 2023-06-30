@@ -8,7 +8,7 @@ import { ChevronRight } from "@mui/icons-material";
 import Toast from "../../component/toast/toast";
 function Register() {
   const [credentials, setCredentials] = useState({
-    username: null,
+    username: undefined,
     password: undefined,
     email: undefined,
   });

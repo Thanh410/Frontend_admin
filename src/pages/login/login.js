@@ -15,19 +15,25 @@ function Login() {
   });
 
   const { user, loading, error, dispatch } = useContext(AuthContext);
-  const { email, page, otp } = useContext(RecoveryContext);
+  const { email } = useContext(RecoveryContext);
+  const [toast, setToast] = useState(false);
 
   const navigate = useNavigate();
 
   const handleOTP = async (e) => {
     e.preventDefault();
+
     try {
-      const otp = Math.floor(Math.random() * 9000 + 1000);
-      const res = await axios.post(
-        "https://backend-api-admin.onrender.com/api/send_recovery_email",
-        { otp, email }
-      );
-      console.log(res.data);
+      if (user.email) {
+        const otp = Math.floor(Math.random() * 9000 + 1000);
+
+        const res = await axios.post(
+          "https://backend-api-admin.onrender.com/api/send_recovery_email",
+          { otp, email: user.email }
+        );
+        console.log(res.data);
+      }
+      // navigate("/otp");
     } catch (err) {}
   };
 
@@ -53,6 +59,7 @@ function Login() {
           payload: { message: "You are not allowed!" },
         });
       }
+      setToast(true);
     } catch (err) {
       dispatch({
         type: "LOGIN_FAILURE",
@@ -63,11 +70,8 @@ function Login() {
 
   return (
     <div className="login">
-      {error ? (
-        <Toast>Wrong Username or Password</Toast>
-      ) : (
-        user && <Toast>Login Success</Toast>
-      )}
+      {toast && <Toast>Login Success</Toast>}
+      {error && <Toast>Wrong Username or Password</Toast>}
 
       <div className="loginContainer">
         <h2 className="title">Login</h2>

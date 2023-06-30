@@ -42,13 +42,15 @@ function Sidebar() {
         <ul>
           <p className="title">MAIN</p>
           <li>
-            <Dashboard className="icon" />
-            <span>{t("dashboard")}</span>
+            <Link to={"/"}>
+              <Dashboard className="icon" />
+              <span>{t("dashboard")}</span>
+            </Link>
           </li>
           <p className="title">USER</p>
 
           <li>
-            <Link to={"users"}>
+            <Link to={"/users"}>
               <PeopleOutline className="icon" />
               <span>{t("user")}</span>
             </Link>

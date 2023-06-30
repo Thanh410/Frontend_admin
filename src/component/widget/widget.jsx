@@ -7,18 +7,21 @@ import {
 } from "@mui/icons-material";
 import "./widget.scss";
 import { Link } from "react-router-dom";
+import { useTransition } from "react";
+import { useTranslation } from "react-i18next";
 
 function Widget({ type }) {
   let data;
   const amount = 100;
   const diff = 20;
+  const { t } = useTranslation("widget");
 
   switch (type) {
     case "user":
       data = {
-        title: "USERS",
+        title: <span>{t("user")}</span>,
         isMoney: false,
-        link: "See all users",
+        link: <span>{t("seeAllUser")}</span>,
         icon: (
           <PersonOutline
             className="icon"
@@ -29,9 +32,9 @@ function Widget({ type }) {
       break;
     case "order":
       data = {
-        title: "ORDERS",
+        title: <span>{t("orders")}</span>,
         isMoney: false,
-        link: "See all orders",
+        link: <span>{t("seeAllOrder")}</span>,
         icon: (
           <ShoppingCartOutlined
             className="icon"
@@ -45,9 +48,9 @@ function Widget({ type }) {
       break;
     case "earning":
       data = {
-        title: "EARNING",
+        title: <span>{t("earning")}</span>,
         isMoney: false,
-        link: "See all earnings",
+        link: <span>{t("seeAllbalance")}</span>,
         icon: (
           <MonetizationOnOutlined
             className="icon"
@@ -58,9 +61,9 @@ function Widget({ type }) {
       break;
     case "balance":
       data = {
-        title: "BALANCE",
+        title: <span>{t("balance")}</span>,
         isMoney: false,
-        link: "See detailbalances",
+        link: <span>{t("seeAllEarning")}</span>,
         icon: (
           <AccountBalanceWalletOutlined
             className="icon"

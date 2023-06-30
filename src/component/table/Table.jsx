@@ -8,8 +8,10 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Link } from "react-router-dom";
 import {} from "@mui/icons-material";
+import { useTranslation } from "react-i18next";
 
 function List() {
+  const { t } = useTranslation("table");
   const rows = [
     {
       id: 1,
@@ -67,13 +69,13 @@ function List() {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell className="tableCell">Tracking ID</TableCell>
-            <TableCell className="tableCell">Product</TableCell>
-            <TableCell className="tableCell">Customer</TableCell>
-            <TableCell className="tableCell">Date</TableCell>
-            <TableCell className="tableCell">Amount</TableCell>
-            <TableCell className="tableCell">Payment Method</TableCell>
-            <TableCell className="tableCell">Status</TableCell>
+            <TableCell className="tableCell">{t("trackingId")}</TableCell>
+            <TableCell className="tableCell">{t("product")}</TableCell>
+            <TableCell className="tableCell">{t("customer")}</TableCell>
+            <TableCell className="tableCell">{t("date")}</TableCell>
+            <TableCell className="tableCell">{t("amount")}</TableCell>
+            <TableCell className="tableCell">{t("payment")}</TableCell>
+            <TableCell className="tableCell">{t("status")}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

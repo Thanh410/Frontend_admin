@@ -1,5 +1,6 @@
 import "./Chart.scss";
 import {} from "@mui/icons-material";
+import { useTranslation } from "react-i18next";
 import {
   AreaChart,
   Area,
@@ -10,15 +11,18 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
-  { name: "January", Total: 1200 },
-  { name: "February", Total: 2100 },
-  { name: "March", Total: 800 },
-  { name: "April", Total: 1600 },
-  { name: "May", Total: 900 },
-  { name: "June", Total: 1700 },
-];
 function Chart({ aspect, title }) {
+  const { t } = useTranslation(["chart"]);
+
+  const data = [
+    { name: t("january"), Total: 1200 },
+    { name: t("february"), Total: 2100 },
+    { name: t("march"), Total: 800 },
+    { name: t("april"), Total: 1600 },
+    { name: t("may"), Total: 900 },
+    { name: t("june"), Total: 1700 },
+  ];
+
   return (
     <div className="Chart">
       <div className="title">{title}</div>

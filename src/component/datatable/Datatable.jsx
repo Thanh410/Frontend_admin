@@ -5,12 +5,13 @@ import { useEffect, useState } from "react";
 import useFetch from "../../hook/useFetch";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { userRows } from "../../datatableSource";
 
 function Datatable({ columns, title }) {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
   const [list, setList] = useState();
-  const { data } = useFetch(`/${path}`);
+  const { data } = useFetch(`/api/${path}`);
 
   const { t } = useTranslation(["title", "option"]);
 

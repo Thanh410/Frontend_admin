@@ -1,10 +1,11 @@
-import "./NewHotel.scss";
+import "./NewRoom.scss";
 import Navbar from "../../component/navbar/Navbar";
 import Sidebar from "../../component/sidebar/Sidebar";
 import { DriveFolderUploadOutlined } from "@mui/icons-material";
 import { useState } from "react";
 import axios from "axios";
-function NewHotel({ inputs, title }) {
+
+function NewRooms({ inputs, title }) {
   const [file, setFile] = useState("");
   const [info, setInfo] = useState({});
 
@@ -24,14 +25,14 @@ function NewHotel({ inputs, title }) {
         data
       );
       const { url } = uploadRes.data;
-      const newUser = {
+      const newRooms = {
         ...info,
         img: url,
       };
 
       await axios.post(
-        "https://backend-api-admin.onrender.com/api/hotels",
-        newUser
+        "https://backend-api-admin.onrender.com/api/rooms/" + info._id,
+        newRooms
       );
     } catch (err) {
       console.log(err);
@@ -75,6 +76,7 @@ function NewHotel({ inputs, title }) {
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
                   <input
+                    id={input.id}
                     onChange={handleChange}
                     type={input.type}
                     placeholder={input.placeholder}
@@ -93,4 +95,4 @@ function NewHotel({ inputs, title }) {
   );
 }
 
-export default NewHotel;
+export default NewRooms;

@@ -14,11 +14,12 @@ import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/themeContext";
 import { AuthContext } from "./context/authContext";
-import { useHotel, userColumns } from "./datatableSource";
+import { useHotel, useRoom, userColumns } from "./datatableSource";
 import NewHotel from "./pages/newHotel/NewHotel";
 import Register from "./pages/register/register";
 import OTP from "./pages/OTP/otp";
 import Changepassword from "./pages/ChangePassword/ChangePassword.js";
+import NewRooms from "./pages/newRoom/NewRoom";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -74,6 +75,7 @@ function App() {
                 path="new"
               ></Route>
             </Route>
+            {/* Hotel */}
             <Route path="hotels">
               <Route
                 element={
@@ -95,6 +97,33 @@ function App() {
                 element={
                   <Protected>
                     <NewHotel title="Add New Hotel" inputs={productInputs} />
+                  </Protected>
+                }
+                path="new"
+              ></Route>
+            </Route>
+            {/* Rooms */}
+            <Route path="Rooms">
+              <Route
+                element={
+                  <Protected>
+                    <List title="Add New Rooms" columns={useRoom} />
+                  </Protected>
+                }
+                index
+              ></Route>
+              <Route
+                element={
+                  <Protected>
+                    <Single />
+                  </Protected>
+                }
+                path=":RoomsId"
+              ></Route>
+              <Route
+                element={
+                  <Protected>
+                    <NewRooms title="Add New Hotel" inputs={productInputs} />
                   </Protected>
                 }
                 path="new"

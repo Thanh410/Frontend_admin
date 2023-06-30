@@ -22,7 +22,7 @@ export const userColumns = [
   },
   { field: "email", headerName: "Email", width: 230 },
   { field: "country", headerName: "Country", width: 100 },
-  { field: "city", headerName: "city", width: 100 },
+  { field: "city", headerName: "City", width: 100 },
   { field: "phone", headerName: "Phone", width: 100 },
   { field: "age", headerName: "Age", width: 100 },
   {
@@ -87,10 +87,10 @@ export const useHotel = [
 ];
 
 export const useRoom = [
-  { field: "id", headerName: "ID", width: 70 },
-  { field: "type", headerName: "Type", width: 100 },
-  { field: "title", headerName: "Title", width: 100 },
-  { field: "desc", headerName: "Desc", width: 100 },
-  { field: "price", headerName: "Price", width: 100 },
-  { field: "maxPeople", headerName: "MaxPeople", width: 100 },
+  { field: "_id", headerName: "ID", width: 70 },
+  { field: "type", headerName: "Type", width: 150 },
+  { field: "title", headerName: "Title", width: 150 },
+  { field: "desc", headerName: "Desc", width: 150 },
+  { field: "price", headerName: "Price", width: 150 },
+  { field: "maxPeople", headerName: "MaxPeople", width: 150 },
 ];

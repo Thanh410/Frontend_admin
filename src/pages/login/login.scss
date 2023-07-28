@@ -5,6 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   .loginContainer {
     flex-direction: column;
     background: linear-gradient(90deg, #5d54a4, #7c78b8);
@@ -30,16 +31,16 @@
         margin-right: 10px;
       }
       input {
-        color: #d1d1d4;
+        width: 100%;
       }
       #username,
       #password {
+        position: relative;
         border: none;
         border-bottom: 2px solid #d1d1d4;
         background: none;
         padding: 10px;
         font-weight: 700;
-        width: 100%;
         transition: 0.2s;
         color: lightgrey;
         outline: none;

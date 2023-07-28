@@ -8,9 +8,10 @@ import { ChevronRight } from "@mui/icons-material";
 import { Link, useNavigate } from "react-router-dom";
 import Toast from "../../component/toast/toast";
 import { RecoveryContext } from "../../context/recoveryContext";
+import Loading from "../../component/loading/Loading";
 function Login() {
   const [credentials, setCredentials] = useState({
-    username: undefined,
+    email: undefined,
     password: undefined,
   });
 
@@ -67,49 +68,60 @@ function Login() {
       });
     }
   };
-
+  console.log(user);
   return (
-    <div className="login">
-      {toast && <Toast>Login Success</Toast>}
-      {error && <Toast>Wrong Username or Password</Toast>}
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="login">
+          {toast && <Toast>Login Success</Toast>}
+          {error && <Toast>Wrong Username or Password</Toast>}
 
-      <div className="loginContainer">
-        <h2 className="title">Login</h2>
-        <div className="item">
-          <label className="text">Username</label>
-          <input
-            id="username"
-            onChange={handleChange}
-            type="text"
-            placeholder="Admin"
-          ></input>
+          <div className="loginContainer">
+            <h2 className="title">Login</h2>
+            <div className="item">
+              <label className="text">Email</label>
+              <input
+                id="username"
+                onChange={handleChange}
+                type="text"
+                placeholder="Enter Your Email"
+              ></input>
+            </div>
+            <div className="item">
+              <label className="text">Password</label>
+              <input
+                id="password"
+                onChange={handleChange}
+                type="password"
+                placeholder="Enter is Password"
+              ></input>
+
+              <Link to={"/otp"} className="forgotPassword" onClick={handleOTP}>
+                Forgot password?
+              </Link>
+            </div>
+
+            <button
+              disabled={loading}
+              className="btnLogin"
+              onClick={handleClick}
+              onKeyDown={(e) => e.key === "Enter"}
+            >
+              Login
+              <ChevronRight className="icon" />
+            </button>
+            <span className="signUp">
+              Don't have an account?
+              <Link to={"/register"} className="linkSignUp">
+                Register
+              </Link>
+            </span>
+          </div>
         </div>
-        <div className="item">
-          <label className="text">Password</label>
-          <input
-            id="password"
-            onChange={handleChange}
-            type="password"
-            placeholder="Admin"
-          ></input>
-
-          <Link to={"/otp"} className="forgotPassword" onClick={handleOTP}>
-            Forgot password?
-          </Link>
-        </div>
-
-        <button disabled={loading} className="btnLogin" onClick={handleClick}>
-          Login
-          <ChevronRight className="icon" />
-        </button>
-        <span className="signUp">
-          Don't have an account?
-          <Link to={"/register"} className="linkSignUp">
-            Register
-          </Link>
-        </span>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 
